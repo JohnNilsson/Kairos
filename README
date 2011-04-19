@@ -1,1 +1,12 @@
-Kairos is an append only event store
+Kairos is a stand alone event store with built in management tools.
+
+It is stand alone in the sense that given only a single Karios database all required tools and data to derive the semantics of the stored events are provided.
+
+It is stand alone in the sense that it provides a language neutral network interface for easy integration in any environment.
+
+It has built in support for
+  * Ad hoc querying for debugging and one off extractions
+  * Backup and restore
+  * To be continued...
+
+It is the aim of Kairos to provide the same level of support and sense of security for data managment as mature RDBMS systems. Albeit for a vastly simpler data model and performance characteristics.
