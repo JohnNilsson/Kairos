@@ -1,0 +1,60 @@
+Kairos main purpose is to act as an event store in an event sourced application.
+
+In a typical DDD/ES/CQRS system the flow goes something like this.
+
+The domain consists of event sourced aggregates.
+To update the domain a command is sent to a command handler.
+The command handler fetches one or more aggregates to process the command.
+To fetch an event sourced aggreagate there are some options.
+  1. The aggregate exists in a cache and is thus read from that.
+  2. The aggregate is materialized from the event stream.
+  3. The aggregate is materialized from a snapshopt and the events since.
+
+Kairos will directly support use case 2 by answering queries for "All events".
+As an optimization it should be possible to retrieve a subset including all
+relevant events for a specific query. A first approach to such an optimization
+is to simply partition the events in streams and let each stream represent a
+specific aggregate. If it can be avoided it is probably best to not asume that
+this is the best and only event partitioning scheme though.
+
+Use case 3 will be supported at least by answering queries for "All events
+since x".  It is not clear at this time wether x should represent a point in a
+totaly ordered sequence of events or if Kairos should support a notion of time
+that is partially ordered.
+
+An future evolution of Kairos, or a sister project, will probably provide the
+features required to implement snapshotting. As the structure of snapshots
+sourced from the events should be of a rather ephermal nature in relation to
+the events as such Kairos will take care to not create dependencies on their
+existance or particular structure.
+
+Use case 1 could in the future be supported by the aforementioned sister
+project. Kairos as such is unlikley to have such a feature though.
+
+
+
+After an aggregate has been fetched in the command handler it will execute the
+command on this aggregate under the assumption that it represents the latest
+truth about things relevant to the command. As a result of executing the
+command a new set of events will be generated to represent what what has
+happened. This set of events will be sent to Kairos for durable storage.
+
+Assuming a multi process setup, probably seperated by a network, there can be
+significant issues with performance in this step. Kairos will provide features
+to solve such issues.
+
+Once the events has been securely persisted to disk they are to be consided new
+truths about the domain. Kairos will provide feature to do further processing
+of the events once persisted, or even speculatively perform action assuming
+they'll be persisted. The most common use case will be to update various read
+models.
+
+
+
+A Kairos database will also be used by devlopers and operations for various
+tasks related to debugging, support, maintenance and such. To this end Kairos
+will provide tools to support such activities.
+
+What usecases this is more precisley is yet to be discovered. As a first
+approximation there will at least be a need for a data browser to aid with
+debugging Kairos as such.
