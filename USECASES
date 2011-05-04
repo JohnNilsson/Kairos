@@ -58,3 +58,13 @@ will provide tools to support such activities.
 What usecases this is more precisley is yet to be discovered. As a first
 approximation there will at least be a need for a data browser to aid with
 debugging Kairos as such.
+
+
+As Kairos should be stand-alone. The schema for the data should be provided in
+some sort of catalogue.
+
+One way to integrate the Kairos store with the development is to let Kairos
+participate in the build. Maybe by generating client code for (de)serialization
+and network access. Tools like maven could be used to download jar-files from
+an integrated repo.
+
