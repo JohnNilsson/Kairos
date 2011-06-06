@@ -27,4 +27,7 @@ class Kairos(info: ProjectInfo) extends DefaultProject(info)
         TestArgument(TestFrameworks.ScalaTest, "-oD")
         //,TestArgument(TestFrameworks.ScalaTest, "concordion.output.dir=target/concordion")
      )
+     
+   val jboss_repo = "JBoss Repository" at "https://repository.jboss.org/nexus/content/repositories/releases/"
+   val netty = "org.jboss.netty" % "netty" % "3.2.4.Final"
 }

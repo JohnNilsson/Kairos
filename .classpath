@@ -3,6 +3,7 @@
 <classpathentry kind="src" path="src/test/scala" output="target/scala_2.9.0/test-classes" including="**/*.scala" />
 <classpathentry kind="src" path="src/main/scala" including="**/*.scala" />
 <classpathentry kind="lib" path="lib_managed/scala_2.9.0/compile/scalatest_2.9.0-1.4.1.jar" />
+<classpathentry kind="lib" path="lib_managed/scala_2.9.0/compile/netty-3.2.4.Final.jar" />
 <classpathentry kind="lib" path="lib_managed/scala_2.9.0/compile/akka-testkit-1.1.jar" />
 <classpathentry kind="lib" path="lib_managed/scala_2.9.0/compile/akka-actor-1.1.jar" />
 <classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_CONTAINER" />

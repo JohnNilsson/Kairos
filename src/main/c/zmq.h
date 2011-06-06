@@ -13,6 +13,11 @@ static void* init_context()
 		abort();
 	}
 
+	// This kind a works, but is probably not safe at all.
+	// The docs say: "If you try to call the nested function through its 
+	// address after the containing function has exited, all hell will break
+	// loose".
+	// Maybe replace it with some kind of monadic composition?
 	void term_context()
 	{
 		if(context != NULL)
@@ -30,7 +35,8 @@ static void* init_socket(void* context, int type)
 		fprintf(stderr, "Could not create socket: %s\n", zmq_strerror(errno));
 		abort();
 	}
-
+	
+	//Same issue as with init_context()...
 	void close_socket()
 	{
 		if(socket != NULL)
