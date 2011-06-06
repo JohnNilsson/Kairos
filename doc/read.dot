@@ -1,0 +1,9 @@
+digraph flow {
+  Client         -> StorageService  [label="Read topic"]
+  StorageService -> Client          [label="Topic stream"]
+
+  Client          -> AggregateLoader [label="Read Aggregate"]
+  AggregateLoader -> SnapshotService [label="Get snapshot"]
+  AggregateLoader -> StorageService  [label="Read topic delta"]
+  AggregateLoader -> Client          [label="Aggregate"]
+}

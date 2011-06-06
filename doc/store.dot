@@ -1,0 +1,7 @@
+digraph store {
+  Client         -> StorageService  [label="Store event"]
+  StorageService -> Journal         [label="Write to journal"]
+  Journal        -> Index           [label="Index entry"]
+  Index          -> Observer        [label="Notify observers"]
+  Index          -> SnapshotService [label="Update snapshots"]
+}
